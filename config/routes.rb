@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get "reviews/new"
+  get "reviews/create"
+  get "restaurants/index"
+  get "restaurants/show"
+  get "restaurants/new"
+  get "restaurants/create"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,5 +16,16 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
+  Rails.application.routes.draw do
+  get "reviews/new"
+  get "reviews/create"
+  get "restaurants/index"
+  get "restaurants/show"
+  get "restaurants/new"
+  get "restaurants/create"
+  resources :restaurants, only: [ :index, :show, :new, :create ] do
+    resources :reviews, only: [ :new, :create ]
+  end
+end
   # root "posts#index"
 end

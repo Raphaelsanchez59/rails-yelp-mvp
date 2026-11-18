@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <h1><%= @restaurant.name %></h1>
+  <p><strong>Adresse :</strong> <%= @restaurant.address %></p>
+  <p><strong>Téléphone :</strong> <%= @restaurant.phone_number %></p>
+  <p><strong>Catégorie :</strong> <%= @restaurant.category %></p>
+
+  <hr class="my-4">
+
+  <h2>Avis</h2>
+  <% if @restaurant.reviews.any? %>
+    <ul class="list-group mb-3">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item">
+          <p><%= review.content %></p>
+          <small class="text-muted">Note : <%= review.rating %>/5</small>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-muted">Il n'y a pas encore d'avis pour ce restaurant.</p>
+  <% end %>
+
+  <div class="mt-3">
+    <%= link_to "Ajouter un avis", new_restaurant_review_path(@restaurant), class: "btn btn-success" %>
+    <%= link_to "Retour à la liste", restaurants_path, class: "btn btn-secondary ms-2" %>
+  </div>
+</div>
